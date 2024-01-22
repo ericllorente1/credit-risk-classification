@@ -1,0 +1,42 @@
+About: 
+
+For this challenge, we are using the power of supervised machine learning to predict whether loans are healthy or high-risk. 
+
+Using a dataset of historical lending activity, we are going to use logistic regression to build a classification model. For this model, the goal is to find a relationship between the target variable (whether a loan is healthy or high-risk) and the feature variables (loan size, interest rate, borrower income, debt to income ratio, number of accounts, derogatory and total debt). This purpose of this model is to accurately predict if a loan is at high-risk or if it is healthy based on the independent variables. 
+
+Dataset: 
+
+The dataset utilized for this model, had 77,536 rows each representing a loan.
+The data contained the following features:
+•	Loan size - referred to the dollar amount of the loan.
+•	Interest rate - represented the interest rate that must be paid on the principal.
+•	Borrower Income
+•	Debt to Income ratio – ratio between the borrower’s amount of debt and their yearly income. 
+•	Number of accounts
+•	Derogatory Marks – a classified column from 0 to 3 that classifies borrowers’ history on missed payment, late payments, bankruptcy, and foreclosures. 
+•	Total debt
+•	Loan Status – binary classification that categorizes a loan as healthy or high-risk. 
+
+Machine learning Process:
+
+To begin our machine learning process, we first imported our dataset using Pandas’ read_csv method. We then needed to separate our target variable from our features or independent variables. To do so, we assigned the values of the loan_status column to the variable y. The loan_status column was binary classification series only containing 0 and 1. 0 represented healthy loans and 1 represented high-risk loans. We separated the values of the remaining columns and assigned them to X. A dateframe was created for the independent variables using the drop() method. We then analyzed the values of our target variable using the value_counts()	method. We observed that there were 75,036 loans classified as healthy and only 2,500 loans classified as high risk. 
+
+To start our logistic regression model, we first had to separate our data into a training dataset and a testing dataset. To accomplish this, we used scikitlearn’s train_test_split function. To use this function we need to declare 4 variable: X_train, X_test, y_train, y_train. We then use the train_test_split function and fill the parameters with our target and features data (X,y) and assign a random_state of 1 to make sure we always we get the same pseudorandom data set. 
+
+After separating our training and testing data, we created a logistic regression model using the LogisticRegression() function. We then fit our training data into the model. After fitting our data, we made predictions using our test data.  
+
+Results:
+
+Scikit learn’s documentation defines the balanced accuracy score as the following: 
+
+	“The balanced accuracy in binary and multiclass classification problems to deal with imbalanced datasets. It is defined as the average of recall obtained on each class.”
+
+The recall is a metric that measures how accurately the model classified the prediction of each class. In this case our accuracy score was 94% which is the average between 1.00 and .89. Our model was able to correctly classify 100% of the healthy loans while only correctly classify 89% of high-risk loan. 
+
+Overall, the logistic regression model we have created for this data set is accurate at classifying loans correctly with an accuracy score of .99. However, looking at the confusion matrix, we can see that metrics point out an imbalance in accuracy. The model is good at classifying healthy loans with a precision, recall and f-1 score value of 1.00. On the other hand, out of all its high-risk classifications, the model correctly classified 87% of them, while correctly classifying 89% of the high-risk loans in the data set. In this case, the imbalance in the precision and recall metrics can be due to the significant difference between the targets. There are only 625 high-risk loans in comparison to 18,759 healthy loans. This means that even if the model incorrectly classified all the high-risk loans in the dataset, the model would still have an overall accuracy of 97%. From the precision and recall metrics however, we can observe that the model is slightly better at classifying healthy loans than high-risk loans. 
+
+While the model seems pretty accurate, there is still an imbalance between the two target classifications due to the size of the data. Before recommending this model, I would consider over sampling the model to balance the two classifications. After balancing the two we can assure to get a more impartial accuracy score and metrics that paint a better picture of the model. 
+
+
+
+
